@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import GetCodeLines
+from .views import GetLOCView
 
 urlpatterns = [
-    path('lines/', GetCodeLines.as_view())
+    path('loc/', GetLOCView.as_view())
 ]

@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
-class GetCodeLines(APIView):
+class GetLOCView(APIView):
     """
     View to get number of code lines contributed under MLH.
     """

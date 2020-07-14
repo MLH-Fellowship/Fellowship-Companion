@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import Navigation from '../Navigation/Navigation';
+import Navigation from './Navigation';
 
 const theme = createMuiTheme({
   palette: {

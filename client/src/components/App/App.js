@@ -1,6 +1,9 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+
+import Navigation from '../Navigation/Navigation';
 
 const theme = createMuiTheme({
   palette: {
@@ -18,9 +21,12 @@ const theme = createMuiTheme({
 });
 
 const App = () => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-  </ThemeProvider>
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Navigation />
+    </ThemeProvider>
+  </BrowserRouter>
 );
 
 export default App;

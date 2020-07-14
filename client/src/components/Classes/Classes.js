@@ -11,6 +11,9 @@ const Classes = makeStyles((theme) => ({
     display: 'flex',
     textAlign: 'center',
   },
+  mainPrimaryBackgroundColor: {
+    backgroundColor: theme.palette.primary.main,
+  },
 }));
 
 export default Classes;

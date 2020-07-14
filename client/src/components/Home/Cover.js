@@ -9,10 +9,10 @@ const Cover = () => {
   const classes = Classes();
 
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} ${classes.block}`}>
       <Grid container direction="column" alignItems="center" spacing={2}>
         <Grid item>
-          <Typography variant="h2" component="h1" color="primary">
+          <Typography variant="h2" component="h1" color="secondary">
             Fellowship Companion
           </Typography>
         </Grid>
@@ -25,7 +25,7 @@ const Cover = () => {
               rel="noopener noreferrer"
               color="secondary"
             >
-              MLH Fellowship
+              <strong>MLH Fellowship</strong>
             </Link>{' '}
             activities!
           </Typography>

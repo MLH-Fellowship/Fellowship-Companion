@@ -10,7 +10,9 @@ const LinesOfCode = () => {
   const classes = Classes();
 
   return (
-    <div className={`${classes.root} ${classes.mainPrimaryBackgroundColor}`}>
+    <div
+      className={`${classes.root} ${classes.block} ${classes.darkPrimaryBackgroundColor}`}
+    >
       <Grid container direction="column" alignItems="center" spacing={2}>
         <Grid item>
           <Typography variant="body1">

@@ -22,6 +22,9 @@ const Classes = makeStyles((theme) => ({
   darkPrimaryBackgroundColor: {
     backgroundColor: theme.palette.primary.dark,
   },
+  lightPrimaryBackgroundColor: {
+    backgroundColor: theme.palette.primary.light,
+  },
 }));
 
 export default Classes;

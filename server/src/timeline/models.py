@@ -12,6 +12,7 @@ class Repository(models.Model):
     description = models.TextField(null=True, blank=True)
     url = models.URLField()
     contributed_loc = models.BigIntegerField()
+    contributors = models.ManyToManyField(to=Fellow)
 
     def __str__(self):
         return self.name

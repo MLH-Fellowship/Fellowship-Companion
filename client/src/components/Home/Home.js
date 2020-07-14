@@ -6,6 +6,7 @@ import Classes from '../Classes/Classes';
 import Cover from './Cover';
 import LinesOfCode from './LinesOfCode';
 import Fellows from './Fellows';
+import Projects from './Projects';
 
 const Home = () => {
   const classes = Classes();
@@ -21,6 +22,9 @@ const Home = () => {
         </Grid>
         <Grid item sm={6} xs={12}>
           <Fellows />
+        </Grid>
+        <Grid item sm={6} xs={12}>
+          <Projects />
         </Grid>
       </Grid>
     </div>

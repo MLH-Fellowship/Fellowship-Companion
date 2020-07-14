@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import NavigationBar from './NavigationBar';
 import Navigation from './Navigation';
+import Footer from './Footer';
 
 const theme = createMuiTheme({
   palette: {
@@ -27,6 +28,7 @@ const App = () => (
       <CssBaseline />
       <NavigationBar />
       <Navigation />
+      <Footer />
     </ThemeProvider>
   </BrowserRouter>
 );

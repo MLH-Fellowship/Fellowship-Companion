@@ -28,6 +28,9 @@ const Classes = makeStyles((theme) => ({
   mainPrimaryBackgroundColor: {
     backgroundColor: theme.palette.primary.main,
   },
+  grow: {
+    flexGrow: 1,
+  },
 }));
 
 export default Classes;

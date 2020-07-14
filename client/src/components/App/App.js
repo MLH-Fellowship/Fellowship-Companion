@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import NavigationBar from './NavigationBar';
 import Navigation from './Navigation';
 
 const theme = createMuiTheme({
@@ -24,6 +25,7 @@ const App = () => (
   <BrowserRouter>
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <NavigationBar />
       <Navigation />
     </ThemeProvider>
   </BrowserRouter>

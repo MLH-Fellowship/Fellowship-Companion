@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # Created apps
-
+    'timeline',
+    'groups',
 ]
 
 MIDDLEWARE = [

@@ -13,6 +13,9 @@ class Repository(models.Model):
     url = models.URLField()
     contributed_loc = models.BigIntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 class Issue(models.Model):
     """
@@ -26,6 +29,9 @@ class Issue(models.Model):
     url = models.URLField()
     user = models.ForeignKey(to=Fellow, on_delete=models.CASCADE)
     repo = models.ForeignKey(to=Repository, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 
 
 class PullRequest(models.Model):
@@ -42,6 +48,9 @@ class PullRequest(models.Model):
     deletions = models.BigIntegerField()
     user = models.ForeignKey(to=Fellow, on_delete=models.CASCADE)
     repo = models.ForeignKey(to=Repository, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 
 
 class Event(models.Model):
@@ -63,3 +72,6 @@ class Event(models.Model):
     pull_request = models.ForeignKey(to=PullRequest, null=True,
                                      blank=True, on_delete=models.CASCADE)
     repository = models.ForeignKey(to=Repository, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.type} ({self.id})"

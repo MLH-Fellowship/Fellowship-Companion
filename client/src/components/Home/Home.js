@@ -1,8 +1,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import Cover from '../Cover/Cover';
-import LinesOfCode from '../LinesOfCode/LinesOfCode';
+import Cover from './Cover';
+import LinesOfCode from './LinesOfCode';
 
 const Home = () => (
   <Grid container direction="column" alignItems="center" spacing={2}>

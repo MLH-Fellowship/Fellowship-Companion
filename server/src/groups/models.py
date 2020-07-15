@@ -16,15 +16,15 @@ class Team(models.Model):
         return self.name
 
 
-class Fellow(models.Model):
+class GithubUser(models.Model):
     """
-    A model for storing and handling fellows
+    A model for storing and handling fellows, staff and mentors
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     github_handle = models.CharField(max_length=100)
     avatar_url = models.URLField()
-    team = models.ManyToManyField(to=Team, on_delete=models.CASCADE)
+    team = models.ManyToManyField(to=Team)
     role = models.CharField(max_length=50)
 
     def __str__(self):

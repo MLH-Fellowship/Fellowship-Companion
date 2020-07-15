@@ -28,6 +28,18 @@ const Classes = makeStyles((theme) => ({
   mainPrimaryBackgroundColor: {
     backgroundColor: theme.palette.primary.main,
   },
+  grow: {
+    flexGrow: 1,
+  },
+  footer: {
+    position: 'relative',
+    bottom: theme.spacing(1),
+    width: '100%',
+    textAlign: 'center',
+  },
+  verticalAlignMiddle: {
+    verticalAlign: 'middle',
+  },
 }));
 
 export default Classes;

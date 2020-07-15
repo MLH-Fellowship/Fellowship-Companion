@@ -1,5 +1,5 @@
 from django.db import models
-from groups.models import Fellow
+from groups.models import GithubUser
 
 
 class Repository(models.Model):
@@ -12,7 +12,7 @@ class Repository(models.Model):
     description = models.TextField(null=True, blank=True)
     url = models.URLField()
     contributed_loc = models.BigIntegerField()
-    contributors = models.ManyToManyField(to=Fellow)
+    contributors = models.ManyToManyField(to=GithubUser)
 
     def __str__(self):
         return self.name
@@ -28,7 +28,7 @@ class Issue(models.Model):
     description = models.TextField(null=True)
     status = models.CharField(max_length=10)
     url = models.URLField()
-    user = models.ForeignKey(to=Fellow, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=GithubUser, on_delete=models.CASCADE)
     repo = models.ForeignKey(to=Repository, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -47,7 +47,7 @@ class PullRequest(models.Model):
     url = models.URLField()
     additions = models.BigIntegerField()
     deletions = models.BigIntegerField()
-    user = models.ForeignKey(to=Fellow, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=GithubUser, on_delete=models.CASCADE)
     repo = models.ForeignKey(to=Repository, on_delete=models.CASCADE)
 
     def __str__(self):

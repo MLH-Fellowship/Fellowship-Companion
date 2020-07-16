@@ -145,12 +145,6 @@ def get_issues():
             db_issue.save()
 
 
-def get_events():
-    for db_repo in Repository.objects.all():
-        print("Checking ", db_repo.fullname, "...")
-        gh_repo = g.get_repo(db_repo.fullname)
-
-
 username = ""
 password = ""
 filepath = os.path.join(os.path.dirname(os.path.dirname(

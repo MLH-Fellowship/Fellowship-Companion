@@ -53,4 +53,4 @@ We will be mainly focusing on adding more features to this project, but the main
 | [Alberto Pérez de Rada Fiol](https://github.com/AlbertoPdRF) | [Lakshya Khatri](https://github.com/LakshyaKhatri) | [Saurabh Agarwala](https://github.com/SaurabhAgarwala) |
 
 ## License
-This project (Fellowship Companion) is licensed under [MIT License](LICENSE.md)
+This project (Fellowship Companion) is licensed under [MIT License](LICENSE)

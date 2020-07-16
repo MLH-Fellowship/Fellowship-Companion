@@ -74,8 +74,9 @@ class Event(models.Model):
         (FORK, 'fork')
     ]
     id = models.IntegerField(primary_key=True)
-    time = models.DateTimeField()
+    created_at = models.DateTimeField()
     type = models.CharField(max_length=2, choices=EVENT_TYPE_CHOICES)
+    action = models.CharField(max_length=20)
     issue = models.ForeignKey(to=Issue, null=True, blank=True, on_delete=models.CASCADE)
     pull_request = models.ForeignKey(to=PullRequest, null=True,
                                      blank=True, on_delete=models.CASCADE)

@@ -30,13 +30,22 @@ Fellowship Companion offers following features (everything can be filtered by in
     - React
     - HTML, CSS, JS
 
-# Live Demo
+## Live Demo
  - [The App](https://deploy-preview-90--fellowship-companion.netlify.app/)
  - [API Endpoints](https://agsaurabh.pythonanywhere.com/api/v1/overview/) (docs comming soon)
 
 ## Local Setup
  - [Server Setup](/server/README.md)
  - [Client Setup](/client/README.md)
+
+## Future Scope
+We will be mainly focusing on adding more features to this project, but the main focus will be on these things:
+ - Made data to be updated on hourly basis (or faster if possible).
+ - Issue Suggestions
+ - UI for top contributors
+ - Map for showing country-wise contributions
+ - UI for Popular Languages and Repositories
+ - UI improvements
 
 ## Authors
 | <img src="https://github.com/AlbertoPdRF.png" alt="Alberto Pérez de Rada Fiol" width="100" height="100" /> | <img src="https://github.com/LakshyaKhatri.png" alt="Lakshya Khatri" width="100" height="100" /> | <img src="https://github.com/SaurabhAgarwala.png" alt="Saurabh Agarwala" width="100" height="100" /> |

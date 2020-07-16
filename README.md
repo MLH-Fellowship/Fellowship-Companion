@@ -1,7 +1,8 @@
 # Fellowship-Companion
-Fellowship Companion is a web app that will help you peek into MLH Fellowship activities. This will contain day-to-day activities of fellows.
 
 ![Demo GIF](assets/demo.png)
+
+Fellowship Companion is a web app that will help you peek into MLH Fellowship activities. This will contain day-to-day activities of fellows.
 
 [Demo](https://deploy-preview-90--fellowship-companion.netlify.app/)
 

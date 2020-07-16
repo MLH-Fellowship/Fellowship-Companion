@@ -73,7 +73,6 @@ class Event(models.Model):
         (ISSUE, 'issue'),
         (FORK, 'fork')
     ]
-    id = models.IntegerField(primary_key=True)
     created_at = models.DateTimeField()
     type = models.CharField(max_length=2, choices=EVENT_TYPE_CHOICES)
     action = models.CharField(max_length=20)

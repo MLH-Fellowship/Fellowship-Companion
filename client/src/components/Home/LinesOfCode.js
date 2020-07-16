@@ -1,13 +1,16 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 
 import CountUp from 'react-countup';
 
 import Classes from '../Classes/Classes';
 
-const LinesOfCode = () => {
+const LinesOfCode = (props) => {
+  const { loc } = props;
+
   const classes = Classes();
 
   return (
@@ -19,9 +22,13 @@ const LinesOfCode = () => {
           <Typography variant="body1">The Fellows have contributed</Typography>
         </Grid>
         <Grid item>
-          <Typography variant="h3" component="h2" color="secondary">
-            <CountUp end={1234567890} separator=" " />
-          </Typography>
+          {loc ? (
+            <Typography variant="h3" component="h2" color="secondary">
+              <CountUp end={loc} separator=" " />
+            </Typography>
+          ) : (
+            <CircularProgress color="secondary" />
+          )}
         </Grid>
         <Grid item>
           <Typography variant="body1">

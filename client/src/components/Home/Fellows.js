@@ -1,13 +1,16 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 
 import CountUp from 'react-countup';
 
 import Classes from '../Classes/Classes';
 
-const Fellows = () => {
+const Fellows = (props) => {
+  const { fellows } = props;
+
   const classes = Classes();
 
   return (
@@ -19,9 +22,13 @@ const Fellows = () => {
           <Typography variant="body1">The Fellowship has</Typography>
         </Grid>
         <Grid item>
-          <Typography variant="h3" component="h2" color="secondary">
-            <CountUp end={123} separator=" " />
-          </Typography>
+          {fellows ? (
+            <Typography variant="h3" component="h2" color="secondary">
+              <CountUp end={fellows} separator=" " />
+            </Typography>
+          ) : (
+            <CircularProgress color="secondary" />
+          )}
         </Grid>
         <Grid item>
           <Typography variant="body1">Fellows!</Typography>

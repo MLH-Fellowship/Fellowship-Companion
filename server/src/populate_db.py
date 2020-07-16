@@ -18,20 +18,6 @@ from timeline.models import (
     Event,
 )
 
-if __name__ == '__main__':
-    filepath = os.path.join(os.path.dirname(os.path.dirname(
-        os.path.abspath(__file__))), 'env', 'credentials.txt'
-    )
-    username = ""
-    password = ""
-    with open(filepath) as file:
-        lines = file.readlines()
-        username = lines[0][:-1]
-        password = lines[1][:-1]
-
-g = Github(username, password)
-org = g.get_organization('MLH-Fellowship')
-
 
 def get_repos():
     for repo in org.get_repos(type='forks', sort='created'):
@@ -114,3 +100,66 @@ def get_prs():
                     merged=gh_pr.merged,
                 )
                 db_pr.save()
+
+
+def get_issues():
+    for db_repo in Repository.objects.all():
+        print("Checking ", db_repo.fullname, "...")
+        gh_repo = g.get_repo(db_repo.fullname)
+        for gh_issue in gh_repo.get_issues(state='all', since=datetime(2020, 6, 1)):
+            if Issue.objects.filter(id=gh_issue.id).count() > 0:
+                continue
+            db_user = GithubUser.objects.filter(github_handle__iexact=gh_issue.user.login)
+            db_pr = None
+            if gh_issue.pull_request is not None:
+                db_pr = PullRequest.objects.filter(
+                    url__iexact=gh_issue.pull_request.raw_data["html_url"]
+                )
+                if db_pr.count() > 0:
+                    db_pr = db_pr.first()
+                else:
+                    db_pr = None
+
+            if db_user.count() > 0:
+                db_user = db_user.first()
+            else:
+                db_user = None
+
+            if (db_pr is None) and (db_user is None):
+                continue
+
+            print("Inserting ", gh_issue.html_url)
+            db_issue = Issue(
+                id=gh_issue.id,
+                number=gh_issue.number,
+                title=gh_issue.title,
+                description=gh_issue.body,
+                created_at=gh_issue.created_at,
+                closed_at=gh_issue.closed_at,
+                state=gh_issue.state,
+                url=gh_issue.html_url,
+                related_pr=db_pr,
+                user=db_user,
+                repo=db_repo,
+            )
+            db_issue.save()
+
+
+def get_events():
+    for db_repo in Repository.objects.all():
+        print("Checking ", db_repo.fullname, "...")
+        gh_repo = g.get_repo(db_repo.fullname)
+
+
+username = ""
+password = ""
+filepath = os.path.join(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))), 'env', 'credentials.txt'
+)
+with open(filepath) as file:
+    lines = file.readlines()
+    username = lines[0][:-1]
+    password = lines[1][:-1]
+
+g = Github(username, password)
+org = g.get_organization('MLH-Fellowship')

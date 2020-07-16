@@ -67,11 +67,11 @@ class Event(models.Model):
     """
     PR = 'PR'
     ISSUE = 'IS'
-    CREATE = 'CR'
+    FORK = 'FK'
     EVENT_TYPE_CHOICES = [
         (PR, 'pull_request'),
         (ISSUE, 'issue'),
-        (CREATE, 'create')
+        (FORK, 'fork')
     ]
     id = models.IntegerField(primary_key=True)
     time = models.DateTimeField()

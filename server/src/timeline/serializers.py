@@ -23,6 +23,8 @@ class RepositorySerializer(serializers.ModelSerializer):
 
 
 class RepoOverviewSerializer(serializers.ModelSerializer):
+    organization = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Repository
         fields = [
@@ -30,6 +32,9 @@ class RepoOverviewSerializer(serializers.ModelSerializer):
             'organization',
             'url',
         ]
+
+    def get_organization(self, repo):
+        return repo.fullname.split('/')[0]
 
 
 class IssueOverviewSerializer(serializers.ModelSerializer):
@@ -64,8 +69,8 @@ class PROverviewSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     issue = IssueOverviewSerializer(many=False, read_only=True)
     pull_request = PROverviewSerializer(many=False, read_only=True)
-    user = FellowListSerializer(many=False, read_only=True)
-    repository = RepoOverviewSerializer(many=False, read_only=True)
+    user = serializers.SerializerMethodField(read_only=True)
+    repository = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Event
@@ -78,3 +83,15 @@ class EventSerializer(serializers.ModelSerializer):
             'user',
             'repository',
         ]
+
+    def get_user(self, event):
+        if event.issue is None:
+            return FellowListSerializer(event.pull_request.user).data
+        else:
+            return FellowListSerializer(event.issue.user).data
+
+    def get_repository(self, event):
+        if event.issue is None:
+            return RepoOverviewSerializer(event.pull_request.repo).data
+        else:
+            return RepoOverviewSerializer(event.issue.repo).data

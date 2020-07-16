@@ -29,6 +29,6 @@ class FellowDetailView(generics.RetrieveAPIView):
     serializer_class = FellowSerializer
 
     def get(self, request, github_handle):
-        queryset = GithubUser.filter(github_handle__iexact=github_handle)
+        queryset = GithubUser.objects.filter(github_handle__iexact=github_handle)
         serializer = FellowSerializer(queryset.first())
         return Response(serializer.data)

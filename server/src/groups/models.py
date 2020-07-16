@@ -31,6 +31,7 @@ class GithubUser(models.Model):
     following = models.PositiveIntegerField()
     following_url = models.URLField()
     teams = models.ManyToManyField(to=Team)
+    loc = models.IntegerField(default=0)
 
     def __str__(self):
         return self.github_handle

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import generics
-from .models import Repository
+from .models import Repository, Event
 from .serializers import RepositorySerializer, EventSerializer
 # Create your views here.
 
@@ -21,5 +21,5 @@ class RepositoryDetailView(generics.RetrieveAPIView):
 
 
 class EventListView(generics.ListAPIView):
-    queryset = Events.objects.order_by('-created_at')
+    queryset = Event.objects.order_by('-created_at')
     serializer_class = EventSerializer

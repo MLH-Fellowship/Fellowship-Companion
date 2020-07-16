@@ -33,7 +33,7 @@ class RepoOverviewSerializer(serializers.ModelSerializer):
 
 
 class IssueOverviewSerializer(serializers.ModelSerializer):
-    related_pr = serializers.IntegerField('get_pr_number')
+    related_pr = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Issue
@@ -43,6 +43,9 @@ class IssueOverviewSerializer(serializers.ModelSerializer):
             'number',
             'related_pr'
         ]
+
+    def get_related_pr(self, issue):
+        return issue.related_pr.number if issue.related_pr else None
 
 
 class PROverviewSerializer(serializers.ModelSerializer):
@@ -59,10 +62,10 @@ class PROverviewSerializer(serializers.ModelSerializer):
 
 
 class EventSerializer(serializers.ModelSerializer):
-    issue = IssueOverviewSerializer(many=False)
-    pull_request = PROverviewSerializer(many=False)
-    user = FellowListSerializer(many=False)
-    repository = RepoOverviewSerializer(many=False)
+    issue = IssueOverviewSerializer(many=False, read_only=True)
+    pull_request = PROverviewSerializer(many=False, read_only=True)
+    user = FellowListSerializer(many=False, read_only=True)
+    repository = RepoOverviewSerializer(many=False, read_only=True)
 
     class Meta:
         model = Event

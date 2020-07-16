@@ -23,7 +23,8 @@ from timeline import urls as timeline_urls
 api_urls = [
     path('overview/', GetOverview.as_view()),
     path('users/', include('groups.urls')),
-    path('repositories/', include(timeline_urls.repository_urls))
+    path('repositories/', include(timeline_urls.repository_urls)),
+    path('events/', include(timeline_urls.event_urls)),
 ]
 
 urlpatterns = [

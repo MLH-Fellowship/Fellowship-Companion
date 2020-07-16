@@ -18,10 +18,12 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from .views import GetOverview
+from timeline import urls as timeline_urls
 
 api_urls = [
     path('overview/', GetOverview.as_view()),
-    path('users/', include('groups.urls'))
+    path('users/', include('groups.urls')),
+    path('repositories/', include(timeline_urls.repository_urls))
 ]
 
 urlpatterns = [

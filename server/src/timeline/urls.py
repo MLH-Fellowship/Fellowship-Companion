@@ -1,3 +1,6 @@
 from django.urls import path, include
+from .views import RepositoryListView
 
-urlpatterns = []
+repository_urls = [
+    path('', RepositoryListView.as_view()),
+]

@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Repository, Event
+from .models import Repository, Event, Issue, PullRequest
+from groups.serializers import FellowListSerializer
 
 
 class RepositorySerializer(serializers.ModelSerializer):
@@ -21,7 +22,47 @@ class RepositorySerializer(serializers.ModelSerializer):
         ]
 
 
+class RepoOverviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Repository
+        fields = [
+            'name',
+            'organization',
+            'url',
+        ]
+
+
+class IssueOverviewSerializer(serializers.ModelSerializer):
+    related_pr = serializers.IntegerField('get_pr_number')
+
+    class Meta:
+        model = Issue
+        fields = [
+            'title',
+            'url',
+            'number',
+            'related_pr'
+        ]
+
+
+class PROverviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PullRequest
+        fields = [
+            'title',
+            'url',
+            'merged',
+            'number',
+            'additions',
+            'deletions'
+        ]
+
+
 class EventSerializer(serializers.ModelSerializer):
+    issue = IssueOverviewSerializer(many=False)
+    pull_request = PROverviewSerializer(many=False)
+    user = FellowListSerializer(many=False)
+    repository = RepoOverviewSerializer(many=False)
 
     class Meta:
         model = Event

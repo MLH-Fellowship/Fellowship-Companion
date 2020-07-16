@@ -9,3 +9,12 @@ from .serializers import RepositorySerializer
 class RepositoryListView(generics.ListAPIView):
     queryset = Repository.objects.all()
     serializer_class = RepositorySerializer
+
+
+class RepositoryDetailView(generics.RetrieveAPIView):
+    serializer_class = RepositorySerializer
+
+    def get(self, request, org, repo):
+        queryset = Repository.objects.filter(fullname__iexact=f"{org}/{repo}")
+        serializer = RepositorySerializer(queryset.first())
+        return Response(serializer.data)

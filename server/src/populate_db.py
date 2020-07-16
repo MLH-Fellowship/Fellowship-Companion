@@ -145,6 +145,68 @@ def get_issues():
             db_issue.save()
 
 
+def fill_pr_events():
+    now = datetime.now()
+    for date_time in (now - timedelta(minutes=n) for n in range(60 * 24 * 47)):
+        closed_pr = PullRequest.objects.filter(
+            closed_at__lte=date_time, closed_at__gte=(date_time - timedelta(minutes=1)))
+        opened_pr = PullRequest.objects.filter(
+            created_at__lte=date_time, created_at__gte=(date_time - timedelta(minutes=1)))
+
+        if closed_pr.count() > 0:
+            for pr in closed_pr:
+                db_event = Event(
+                    created_at=pr.closed_at,
+                    type=Event.PR,
+                    action='closed',
+                    issue=None,
+                    pull_request=pr,
+                )
+                db_event.save()
+
+        if opened_pr.count() > 0:
+            for pr in opened_pr:
+                db_event = Event(
+                    created_at=pr.created_at,
+                    type=Event.PR,
+                    action='opened',
+                    issue=None,
+                    pull_request=pr,
+                )
+                db_event.save()
+
+
+def fill_issue_events():
+    now = datetime.now()
+    for date_time in (now - timedelta(minutes=n) for n in range(60 * 24 * 47)):
+        closed_issue = Issue.objects.filter(
+            closed_at__lte=date_time, closed_at__gte=(date_time - timedelta(minutes=1)))
+        opened_issue = Issue.objects.filter(
+            created_at__lte=date_time, created_at__gte=(date_time - timedelta(minutes=1)))
+
+        if closed_issue.count() > 0:
+            for issue in closed_issue:
+                db_event = Event(
+                    created_at=issue.closed_at,
+                    type=Event.ISSUE,
+                    action='closed',
+                    issue=issue,
+                    pull_request=issue.related_pr,
+                )
+                db_event.save()
+
+        if opened_issue.count() > 0:
+            for issue in opened_issue:
+                db_event = Event(
+                    created_at=issue.created_at,
+                    type=Event.ISSUE,
+                    action='opened',
+                    issue=issue,
+                    pull_request=None,
+                )
+                db_event.save()
+
+
 username = ""
 password = ""
 filepath = os.path.join(os.path.dirname(os.path.dirname(

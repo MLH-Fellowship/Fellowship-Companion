@@ -47,7 +47,7 @@ const Footer = () => {
         </Link>{' '}
         on{' '}
         <Link
-          href="https://github.com/LakshyaKhatri/Fellowship-Companion/"
+          href="https://github.com/MLH-Fellowship/Fellowship-Companion/"
           target="_blank"
           rel="noopener noreferrer"
           color="secondary"

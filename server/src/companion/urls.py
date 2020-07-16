@@ -19,10 +19,15 @@ from django.conf.urls.static import static
 from django.conf import settings
 from .views import GetOverview
 
+api_urls = [
+    path('overview/', GetOverview.as_view()),
+    path('users/', include('groups.urls'))
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/v1/overview/', GetOverview.as_view()),
+    path('api/v1/', include(api_urls)),
 ]
 
 if settings.DEBUG:

@@ -1,5 +1,4 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -8,6 +7,7 @@ class Team(models.Model):
     """
     A model to handle teams under organizations
     """
+    id = models.IntegerField(primary_key=True)
     name = models.CharField(max_length=100)
     avatar_url = models.URLField()
     description = models.TextField(null=True)
@@ -20,12 +20,17 @@ class GithubUser(models.Model):
     """
     A model for storing and handling fellows, staff and mentors
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
     github_handle = models.CharField(max_length=100)
     avatar_url = models.URLField()
-    team = models.ManyToManyField(to=Team)
-    role = models.CharField(max_length=50)
+    location = models.CharField(max_length=100, null=True, blank=True)
+    followers = models.PositiveIntegerField()
+    followers_url = models.URLField()
+    following = models.PositiveIntegerField()
+    following_url = models.URLField()
+    teams = models.ManyToManyField(to=Team)
 
     def __str__(self):
-        return self.name
+        return self.github_handle

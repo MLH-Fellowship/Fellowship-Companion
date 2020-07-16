@@ -11,11 +11,34 @@ class Repository(models.Model):
     fullname = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     url = models.URLField()
-    contributed_loc = models.BigIntegerField()
+    contributed_loc = models.BigIntegerField(default=0)
     contributors = models.ManyToManyField(to=GithubUser)
+    created_at = models.DateTimeField()
 
     def __str__(self):
         return self.name
+
+
+class PullRequest(models.Model):
+    """
+    A model to keep an eye on the repository's pull requests
+    """
+    id = models.IntegerField(primary_key=True)
+    number = models.IntegerField()
+    title = models.CharField(max_length=100, null=True)
+    description = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField()
+    closed_at = models.DateTimeField(null=True, blank=True)
+    state = models.CharField(max_length=10)
+    url = models.URLField()
+    additions = models.BigIntegerField()
+    deletions = models.BigIntegerField()
+    user = models.ForeignKey(to=GithubUser, on_delete=models.CASCADE)
+    repo = models.ForeignKey(to=Repository, on_delete=models.CASCADE)
+    merged = models.BooleanField()
+
+    def __str__(self):
+        return self.url
 
 
 class Issue(models.Model):
@@ -26,28 +49,12 @@ class Issue(models.Model):
     number = models.IntegerField()
     title = models.CharField(max_length=100)
     description = models.TextField(null=True)
-    status = models.CharField(max_length=10)
+    created_at = models.DateTimeField()
+    closed_at = models.DateTimeField(null=True, blank=True)
+    state = models.CharField(max_length=10)
     url = models.URLField()
-    user = models.ForeignKey(to=GithubUser, on_delete=models.CASCADE)
-    repo = models.ForeignKey(to=Repository, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.title
-
-
-class PullRequest(models.Model):
-    """
-    A model to keep an eye on the repository's pull requests
-    """
-    id = models.IntegerField(primary_key=True)
-    number = models.IntegerField()
-    title = models.CharField(max_length=100)
-    description = models.TextField(null=True)
-    status = models.CharField(max_length=10)
-    url = models.URLField()
-    additions = models.BigIntegerField()
-    deletions = models.BigIntegerField()
-    user = models.ForeignKey(to=GithubUser, on_delete=models.CASCADE)
+    related_pr = models.ForeignKey(to=PullRequest, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(to=GithubUser, on_delete=models.CASCADE, null=True)
     repo = models.ForeignKey(to=Repository, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -60,11 +67,11 @@ class Event(models.Model):
     """
     PR = 'PR'
     ISSUE = 'IS'
-    CREATE = 'CR'
+    FORK = 'FK'
     EVENT_TYPE_CHOICES = [
         (PR, 'pull_request'),
         (ISSUE, 'issue'),
-        (CREATE, 'create')
+        (FORK, 'fork')
     ]
     id = models.IntegerField(primary_key=True)
     time = models.DateTimeField()

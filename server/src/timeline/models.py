@@ -79,7 +79,6 @@ class Event(models.Model):
     issue = models.ForeignKey(to=Issue, null=True, blank=True, on_delete=models.CASCADE)
     pull_request = models.ForeignKey(to=PullRequest, null=True,
                                      blank=True, on_delete=models.CASCADE)
-    # repository = models.ForeignKey(to=Repository, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.type} ({self.id}): {self.action}"

@@ -26,8 +26,6 @@ class FellowListView(generics.ListAPIView):
         Q(teams__name__icontains='MLH Staff') |
         Q(teams__name__icontains='Mentors')
     ).order_by('github_handle')
-    queryset = queryset.exclude(Q(teams__name__icontains='MLH Staff') |
-                                Q(teams__name__icontains='Mentors'))
     serializer_class = FellowListSerializer
 
 

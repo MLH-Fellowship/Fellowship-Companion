@@ -11,6 +11,7 @@ class Repository(models.Model):
     fullname = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
     url = models.URLField()
+    avatar_url = models.URLField(null=True)
     contributed_loc = models.BigIntegerField(default=0)
     contributors = models.ManyToManyField(to=GithubUser)
     created_at = models.DateTimeField()

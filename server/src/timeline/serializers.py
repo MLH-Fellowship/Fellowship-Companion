@@ -17,6 +17,7 @@ class RepositorySerializer(serializers.ModelSerializer):
             'fullname',
             'description',
             'url',
+            'avatar_url',
             'contributed_loc',
             'contributors',
         ]
@@ -31,6 +32,7 @@ class RepoOverviewSerializer(serializers.ModelSerializer):
             'name',
             'organization',
             'url',
+            'avatar_url',
         ]
 
     def get_organization(self, repo):

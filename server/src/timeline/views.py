@@ -7,7 +7,7 @@ from .serializers import RepositorySerializer, EventSerializer
 
 
 class RepositoryListView(generics.ListAPIView):
-    queryset = Repository.objects.all()
+    queryset = Repository.objects.order_by('name')
     serializer_class = RepositorySerializer
 
 

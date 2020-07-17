@@ -5,6 +5,7 @@ import Home from '../Home/Home';
 
 import Contributions from '../Contributions/Contributions';
 import Fellows from '../Fellows/Fellows';
+import Projects from '../Projects/Projects';
 
 const Navigation = () => (
   <Switch>
@@ -12,6 +13,7 @@ const Navigation = () => (
 
     <Route exact path="/contributions" component={Contributions} />
     <Route exact path="/fellows" component={Fellows} />
+    <Route exact path="/projects" component={Projects} />
 
     <Redirect to="/" />
   </Switch>

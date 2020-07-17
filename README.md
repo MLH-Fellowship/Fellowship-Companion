@@ -85,7 +85,7 @@ Fellowship Companion offers following features (everything can be filtered by in
 
 3. Visit [`localhost:3000`](http://localhost:3000) to see the deployed backend
 
-> Note: For the client to display the response of the backend endpoints, the `API endpoint` needs to be updaed in the client side code according to where it is running
+> Note: For the client to display the response of the backend endpoints, the `API endpoint` needs to be updated in the client side code according to where it is running
 
 ## Future Scope
 

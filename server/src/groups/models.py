@@ -24,6 +24,7 @@ class GithubUser(models.Model):
     name = models.CharField(max_length=100, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     github_handle = models.CharField(max_length=100)
+    profile_url = models.URLField(null=True)
     avatar_url = models.URLField()
     location = models.CharField(max_length=100, null=True, blank=True)
     followers = models.PositiveIntegerField()

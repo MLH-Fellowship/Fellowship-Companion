@@ -13,8 +13,14 @@ class FellowListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GithubUser
-        fields = ['name', 'github_handle', 'avatar_url',
-                  'location', 'teams']
+        fields = [
+            'name',
+            'github_handle',
+            'profile_url',
+            'avatar_url',
+            'location',
+            'teams',
+        ]
 
 
 class FellowSerializer(serializers.ModelSerializer):
@@ -26,6 +32,7 @@ class FellowSerializer(serializers.ModelSerializer):
             'name',
             'github_handle',
             'avatar_url',
+            'profile_url',
             'followers',
             'followers_url',
             'following',

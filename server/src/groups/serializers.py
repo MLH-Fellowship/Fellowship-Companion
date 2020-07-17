@@ -5,7 +5,7 @@ from .models import GithubUser, Team
 class FellowTeamOverViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
-        fields = ['name', 'description']
+        fields = ['name', 'description', 'avatar_url']
 
 
 class FellowListSerializer(serializers.ModelSerializer):

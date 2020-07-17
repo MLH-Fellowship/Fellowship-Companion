@@ -23,7 +23,7 @@ const ProjectCard = (props) => {
         rel="noopener noreferrer"
       >
         <CardHeader title={project.name} subheader={project.fullname} />
-        <CardMedia component="img" src={project.avatar_url} height="140" />
+        <CardMedia component="img" src={project.avatar_url} />
         <CardContent>
           {project.description && (
             <Typography>{project.description}</Typography>

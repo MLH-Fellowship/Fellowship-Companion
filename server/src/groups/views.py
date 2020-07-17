@@ -20,8 +20,14 @@ class FellowListView(generics.ListAPIView):
         Q(teams__name__icontains="0.2.2") |
         Q(teams__name__icontains="0.0.2") |
         Q(teams__name__icontains="0.1.2") |
-        Q(teams__name__icontains="0.1.1")
-    ).distinct().order_by('github_handle')
+        Q(teams__name__icontains="0.1.1") |
+        Q(teams__name__icontains="0.0.1")
+    ).distinct().exclude(
+        Q(teams__name__icontains='MLH Staff') |
+        Q(teams__name__icontains='Mentors')
+    ).order_by('github_handle')
+    queryset = queryset.exclude(Q(teams__name__icontains='MLH Staff') |
+                                Q(teams__name__icontains='Mentors'))
     serializer_class = FellowListSerializer
 
 

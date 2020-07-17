@@ -23,10 +23,7 @@ const Contributions = () => {
     window.scrollTo(0, 0);
     setLoading(true);
     getEvents(page)
-      .then((data) => {
-        setData(data);
-        console.log(data);
-      })
+      .then((data) => setData(data))
       .catch((error) => setError(error))
       .finally(() => setLoading(false));
   }, [page]);

@@ -1,6 +1,6 @@
 # Fellowship-Companion
 
-![Landing Screen](assets/landing_screen.png)
+![Landing Screen](client/public/home.png)
 
 <p align="center">
  <a href="https://fellowship-companion.netlify.app/"><b>Live Demo</b></a>

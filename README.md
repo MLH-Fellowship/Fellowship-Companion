@@ -43,7 +43,7 @@ Fellowship Companion offers following features (everything can be filtered by in
 
 ## Live Demo
 
-- [The App](https://deploy-preview-90--fellowship-companion.netlify.app/)
+- [The App](https://fellowship-companion.netlify.app/)
 - [API Endpoints](https://agsaurabh.pythonanywhere.com/api/v1/overview/) (API Docs coming soon) <!-- @TODO: Add the Docs -->
 
 ## Local Setup

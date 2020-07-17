@@ -26,22 +26,35 @@ const HideOnScroll = (props) => {
 const NavigationBar = (props) => {
   const classes = Classes();
 
+  const path = window.location.pathname;
+
+  const getColor = (pathToMatch) =>
+    path === pathToMatch ? 'primary' : 'inherit';
+
   return (
     <Fragment>
       <HideOnScroll {...props}>
         <AppBar color="secondary">
           <Toolbar>
-            <IconButton edge="end" color="inherit" href="/">
+            <IconButton edge="end" color={getColor('/')} href="/">
               <HomeIcon />
             </IconButton>
             <div className={classes.grow} />
-            <IconButton edge="end" color="inherit" href="/contributions">
+            <IconButton
+              edge="end"
+              color={getColor('/contributions')}
+              href="/contributions"
+            >
               <TimelineIcon />
             </IconButton>
-            <IconButton edge="end" color="inherit" href="/fellows">
+            <IconButton edge="end" color={getColor('/fellows')} href="/fellows">
               <GroupIcon />
             </IconButton>
-            <IconButton edge="end" color="inherit" href="/projects">
+            <IconButton
+              edge="end"
+              color={getColor('/projects')}
+              href="/projects"
+            >
               <ListIcon />
             </IconButton>
           </Toolbar>

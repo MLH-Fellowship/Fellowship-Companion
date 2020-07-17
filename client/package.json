@@ -1,7 +1,8 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "fellowship-companion",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "https://fellowship-companion.netlify.app/",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",

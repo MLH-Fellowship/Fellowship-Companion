@@ -36,7 +36,7 @@ class GetOverview(APIView):
             Q(teams__name__icontains="0.0.2") |
             Q(teams__name__icontains="0.1.2") |
             Q(teams__name__icontains="0.1.1")
-        )
+        ).distinct()
         response['fellows'] = fellows.count()
         response['projects'] = Repository.objects.all().count()
         return Response(response)

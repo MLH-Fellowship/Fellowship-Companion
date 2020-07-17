@@ -3,6 +3,9 @@ export const getOverview = () => fetchApi('/overview', { method: 'GET' });
 export const getEvents = (page) =>
   fetchApi(`/events?page=${page}`, { method: 'GET' });
 
+export const getUsers = (page) =>
+  fetchApi(`/users?page=${page}`, { method: 'GET' });
+
 const fetchApi = (path, fetchOptions = {}) => {
   const BASE_API_URL = 'https://agsaurabh.pythonanywhere.com/api/v1';
 

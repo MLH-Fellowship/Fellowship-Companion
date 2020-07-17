@@ -40,6 +40,9 @@ const Classes = makeStyles((theme) => ({
   verticalAlignMiddle: {
     verticalAlign: 'middle',
   },
+  chip: {
+    margin: theme.spacing(0.5),
+  },
 }));
 
 export default Classes;

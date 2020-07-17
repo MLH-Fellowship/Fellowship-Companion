@@ -3,7 +3,7 @@
 ![Landing Screen](assets/landing_screen.png)
 
 <p align="center">
- <a href="https://deploy-preview-90--fellowship-companion.netlify.app/"><b>Live Demo</b></a>
+ <a href="https://fellowship-companion.netlify.app/"><b>Live Demo</b></a>
 </p>
 
 ## Description

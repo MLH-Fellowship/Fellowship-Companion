@@ -1,14 +1,13 @@
 from rest_framework import serializers
 from .models import Repository, Event, Issue, PullRequest
-from groups.serializers import FellowListSerializer
+from groups.serializers import (
+    FellowListSerializer,
+    FellowOverviewSerializer,
+)
 
 
 class RepositorySerializer(serializers.ModelSerializer):
-    contributors = serializers.SlugRelatedField(
-        many=True,
-        read_only=True,
-        slug_field='github_handle'
-    )
+    contributors = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Repository
@@ -21,6 +20,9 @@ class RepositorySerializer(serializers.ModelSerializer):
             'contributed_loc',
             'contributors',
         ]
+
+    def get_contributors(self, repo):
+        return FellowOverviewSerializer(repo.contributors, many=True).data
 
 
 class RepoOverviewSerializer(serializers.ModelSerializer):

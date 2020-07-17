@@ -2,14 +2,14 @@ from rest_framework import serializers
 from .models import GithubUser, Team
 
 
-class FellowTeeamOverViewSerialier(serializers.ModelSerializer):
+class FellowTeamOverViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = ['name', 'description']
 
 
 class FellowListSerializer(serializers.ModelSerializer):
-    teams = FellowTeeamOverViewSerialier(many=True)
+    teams = FellowTeamOverViewSerializer(many=True)
 
     class Meta:
         model = GithubUser
@@ -24,7 +24,7 @@ class FellowListSerializer(serializers.ModelSerializer):
 
 
 class FellowSerializer(serializers.ModelSerializer):
-    teams = FellowTeeamOverViewSerialier(many=True)
+    teams = FellowTeamOverViewSerializer(many=True)
 
     class Meta:
         model = GithubUser
@@ -39,4 +39,15 @@ class FellowSerializer(serializers.ModelSerializer):
             'following_url',
             'location',
             'teams'
+        ]
+
+
+class FellowOverviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GithubUser
+        fields = [
+            'name',
+            'github_handle',
+            'profile_url',
+            'avatar_url',
         ]

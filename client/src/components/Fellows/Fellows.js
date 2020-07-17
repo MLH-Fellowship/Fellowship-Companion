@@ -32,7 +32,13 @@ const Fellows = () => {
     <Fragment>
       {loading && <LinearProgress color="secondary" />}
       <div className={classes.root}>
-        <Grid container direction="row" alignItems="center" spacing={2}>
+        <Grid
+          container
+          direction="row"
+          alignItems="center"
+          justify="center"
+          spacing={2}
+        >
           <Grid item>
             <Grid container justify="center" spacing={2}>
               {data?.results.map((fellow) => (
